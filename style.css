@@ -83,7 +83,7 @@ input {
 	border: none;
 	text-align: center;
 	background-color: transparent;
-	transition: 100ms ease-in;
+	transition: 100ms ease-in-out;
 }
 
 input:focus {
@@ -103,8 +103,8 @@ td:nth-child(even) {
 	margin: 0;
 }
 
-input:hover {
-	filter: contrast(1);
+input:hover:not(.excellent, .good, .fair, .poor, .bad) {
+	background-color: rgba(216, 216, 216, 0.5);
 }
 
 .excellent,
