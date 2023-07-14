@@ -1,8 +1,10 @@
 const SEMESTER = 2, minSubject = 8, maxSub = 9
 const excellent = 1.0, good = 1.4, fair = 1.8, poor = 2.2, bad = 2.6;
 const inputs = document.getElementsByTagName('input');
-const averageDisplay = document.getElementsByClassName('average')[0].getElementsByTagName('td');
+const firstAverageDisplay = document.getElementById('firstSem')
+const secondAverageDisplay = document.getElementById('secondSem')
 const gpa = document.getElementsByTagName('tr')[document.getElementsByTagName('tr').length - 1];
+
 
 const getFirstInputs = (arr) => {
 	let temp = [...arr].filter((item, index) => {
@@ -51,11 +53,6 @@ const secondSemInputs = getSecondInputs(inputs);
 [...inputs].forEach((item) => item.addEventListener('input', solve))
 
 
-
-for (let i = 0; i < averageDisplay.length; i++) {
-	averageDisplay[i].innerText = 'Average: INC';
-}
-
 gpa.innerHTML = `\n\t\t\t<td colspan="2">GPA: INC</td>\n\t\t`;
 
 function solve() {
@@ -66,8 +63,8 @@ function solve() {
 
 		firstSemInputs[i].setAttribute("class", "")
 		secondSemInputs[i].setAttribute("class", "")
-		averageDisplay[0].setAttribute("class", "")
-		averageDisplay[1].setAttribute("class", "")
+		firstAverageDisplay.setAttribute("class", "")
+		secondAverageDisplay.setAttribute("class", "")
 
 
 		if (firstSemInputs[i].value > 3 || firstSemInputs[i].value < 1) {
@@ -89,20 +86,21 @@ function solve() {
 
 	if (firstSubjects >= minSubject) {
 		firstAverage = firstSum / firstSubjects;
-		getAverageRating(firstAverage, averageDisplay[0])
-		averageDisplay[0].innerText = `Average: ${firstAverage.toFixed(2)}`;
+		getAverageRating(firstAverage, firstAverageDisplay)
+		firstAverageDisplay.innerText = `Average: ${firstAverage.toFixed(2)}`;
 
 	} else {
-		averageDisplay[0].innerText = 'Average: INC'
+		firstAverageDisplay.innerText = 'Average: INC'
 		incomplete = true;
 		gpa.innerHTML = `\n\t\t\t<td colspan="2">GPA: INC</td>\n\t\t`;
 	}
+
 	if (secondSubjects >= minSubject) {
 		secondAverage = secondSum / secondSubjects;
-		getAverageRating(secondAverage, averageDisplay[1])
-		averageDisplay[1].innerText = `Average: ${secondAverage.toFixed(2)}`;
+		getAverageRating(secondAverage, secondAverageDisplay)
+		secondAverageDisplay.innerText = `Average: ${secondAverage.toFixed(2)}`;
 	} else {
-		averageDisplay[1].innerText = 'Average: INC'
+		secondAverageDisplay.innerText = 'Average: INC'
 		incomplete = true;
 		gpa.innerHTML = `\n\t\t\t<td colspan="2">GPA: INC</td>\n\t\t`;
 	}
